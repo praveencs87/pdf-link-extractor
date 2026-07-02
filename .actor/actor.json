@@ -1,0 +1,24 @@
+{
+    "actorSpecification": 1,
+    "name": "pdf-link-extractor",
+    "title": "PDF Link Extractor",
+    "description": "Deeply crawl any website to automatically extract all hidden and exposed PDF download links into a clean dataset.",
+    "version": "0.0",
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "minMemoryMbytes": 256,
+    "maxMemoryMbytes": 1024,
+    "pricingModel": "PAY_PER_EVENT",
+    "pricingEvents": [
+        {
+            "eventName": "apify-actor-start",
+            "pricePerEvent": 0.00005,
+            "description": "Charged once when Actor starts"
+        },
+        {
+            "eventName": "page-scanned",
+            "pricePerEvent": 0.0005,
+            "description": "Charged per web page successfully scanned for PDF links"
+        }
+    ]
+}
