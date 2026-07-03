@@ -1,3 +1,4 @@
+import { armKillSwitch, disarmKillSwitch } from './utils/timeoutManager.js';
 import { Actor } from 'apify';
 import { CheerioCrawler, log, enqueueLinks } from 'crawlee';
 
@@ -98,7 +99,9 @@ try {
     log.info(`Starting crawler for ${startUrls.length} start URLs... (Deep Crawl: ${deepCrawl})`);
     
     await crawler.addRequests(startUrls);
+    armKillSwitch(crawler);
     await crawler.run();
+    disarmKillSwitch();
 
     log.info(`🎉 Finished! Scanned ${pagesScanned} pages and found ${pdfsExtracted} unique PDF links.`);
 } catch (error) {
